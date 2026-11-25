@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>观势 · A 股大势研判</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23233a5e'/><path d='M6 22l6-7 5 4 9-10' stroke='%23fff' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <span class="logo" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M6 22l6-7 5 4 9-10" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    <div>
+      <h1>观势</h1>
+      <p>A 股市场大势研判 · 讲清当前状态、主要矛盾和改变判断的条件</p>
+    </div>
+  </div>
+  <div class="status" id="status">
+    <span class="pill" id="st-data">数据源检测中…</span>
+    <span class="pill" id="st-llm">大模型检测中…</span>
+  </div>
+</header>
+
+<section class="ask card">
+  <form id="form" autocomplete="off">
+    <div class="ask-main">
+      <label class="field grow">
+        <span>你想研究什么？</span>
+        <textarea id="q" rows="2" maxlength="200" placeholder="例如：指数在涨但我的股票都在跌，现在市场到底是什么状态？（可留空，做全景研判）"></textarea>
+      </label>
+      <div class="ask-side">
+        <label class="field">
+          <span>研判对象</span>
+          <select id="index"></select>
+        </label>
+        <label class="field">
+          <span>研判时点</span>
+          <input type="date" id="asof">
+        </label>
+        <button type="submit" class="btn primary" id="go">开始研判</button>
+      </div>
+    </div>
+    <div class="ask-foot">
+      <div class="examples" id="examples"></div>
+      <details class="sim">
+        <summary>故障演练</summary>
+        <div id="sims"></div>
+        <p class="hint">勾选后再研判，用于验证接口失败、数据缺失、过期、冲突时产品不会静默给出“正常”结论。</p>
+      </details>
+    </div>
+  </form>
+</section>
+
+<main class="layout">
+  <section id="report" class="report">
+    <div class="empty card">
+      <h2>从一个问题开始</h2>
+      <p>观势会先制定取数计划，调用扶摇行情接口取证，再用公开的规则判定市场状态，最后用证据写出结论。每条结论都能点开看到原始字段、来源接口、请求编号和时点。</p>
+      <ul class="howto">
+        <li><b>输出什么</b>：当前状态、主要矛盾、置信度、状态切换条件，以及事实 / 归纳 / 不确定三类结论</li>
+        <li><b>不输出什么</b>：涨跌预测、点位目标、买卖或仓位建议</li>
+        <li><b>可以继续研究</b>：风格、行业与主线、风险变量、历史相似阶段；也可以选择过去一年内的某个时点回看</li>
+      </ul>
+    </div>
+  </section>
+  <aside class="side">
+    <div class="card" id="work">
+      <h3>研判过程</h3>
+      <p class="muted">提交问题后，这里实时显示取数计划和每一次接口调用。</p>
+    </div>
+  </aside>
+</main>
+
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawer-mask" data-close></div>
+  <div class="drawer-panel" role="dialog" aria-label="证据详情">
+    <button class="drawer-x" data-close aria-label="关闭">×</button>
+    <div id="drawer-body"></div>
+  </div>
+</div>
+
+<footer class="foot" id="foot"></footer>
+<script src="/charts.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>

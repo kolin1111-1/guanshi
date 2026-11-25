@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: guanshi
+    runtime: node
+    plan: free
+    buildCommand: "echo 无需构建"
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: FUYAO_API_KEY
+        sync: false
+      - key: LLM_API_KEY
+        sync: false
+      - key: LLM_BASE_URL
+        value: https://api.deepseek.com
+      - key: LLM_MODEL
+        value: deepseek-chat

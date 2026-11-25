@@ -1,0 +1,14 @@
+{
+  "name": "guanshi",
+  "version": "1.0.0",
+  "description": "观势 · AI 驱动的 A 股市场大势研判（状态框架 + 可追溯证据 + 合规边界）",
+  "type": "module",
+  "main": "server.js",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test test/"
+  },
+  "license": "MIT"
+}
